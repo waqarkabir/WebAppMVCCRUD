@@ -1,0 +1,30 @@
+﻿@model IEnumerable<Student>
+@{
+    Layout = null;
+}
+<div class="">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Cnic</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+
+            @foreach (var student in Model)
+            {
+                <tr>
+                    <td>@student.Name</td>
+                    <td>@student.Cnic</td>
+                    <td>
+                        <a href="#" class="btn btn-sm btn-info js-edit" data-id=@student.Id>Edit</a>
+                        <a href="#" class="btn btn-sm btn-danger js-delete" data-id=@student.Id>Delete</a>
+                        <a href="#" class="btn btn-sm btn-secondary js-detail" data-id=@student.Id>Detail</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
