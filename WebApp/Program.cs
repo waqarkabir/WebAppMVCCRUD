@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using WebApp.Data;
 
@@ -12,6 +13,9 @@ builder.Services.AddDbContext<StudentDbContext>(options =>
     options.UseSqlServer(connectionString);
 });
 
+builder.Services.AddDbContext<AppDBContext>(c => c.UseSqlServer(connectionString));
+
+builder.Services.AddIdentity<IdentityUser, IdentityRole>().AddEntityFrameworkStores<AppDBContext>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

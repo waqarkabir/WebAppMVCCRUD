@@ -1,9 +1,11 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 using WebApp.Models;
 
 namespace WebApp.Controllers
 {
+    [Authorize]
     public class StudentController : Controller
     {
         private readonly ILogger<StudentController> _logger;

@@ -1,8 +1,10 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Authorization;
+using System;
 using System.Collections.Generic;
 
 namespace WebApp.Models
 {
+    [Authorize]
     public class Student
     {
         public int Id { get; set; }
