@@ -1,38 +1,37 @@
-﻿@model StudentIndexViewModel
+﻿@model StudentCreateViewModel
 @{
-    ViewData["Title"] = "Students";
+    ViewData["Title"] = "Add a Student";
     Layout = "_Layout";
 }
 <ol class="breadcrumb pt-2">
     <li class="breadcrumb-item"><a href="/Home/Index">Home</a></li>
-    <li class="breadcrumb-item active">Student</li>
+    <li class="breadcrumb-item"><a href="/Student/Index">Students</a></li>
+    <li class="breadcrumb-item active">Add a Student</li>
 </ol>
 <div class="card-body pt-0">
     <div class="card-title">
         <h2 class="anchor fw-bolder fs-3 mb-2" id="server-side">
-            Searching
+            Add a Student
         </h2>
     </div>
-    <div class="row form-group">
-        <div class="col-md-6 mb-2">
-            <input class="form-control form-control-solid" asp-for="Name" type="text" placeholder="Name">
+    <form method="post" asp-controller="Student" asp-action="Create">
+        @Html.AntiForgeryToken()
+        <input name="IsValid" type="hidden" value="@ViewData.ModelState.IsValid.ToString()" />
+        <div asp-validation-summary="All" class="text-danger">
         </div>
+        <div class="row form-group">
+            <div class="col-md-12 mb-2">
+                <input class="form-control form-control-solid required" asp-for="Name" type="text" placeholder="Name">
+            </div>
 
-        <div class="col-md-6 mb-2">
-            <input class="form-control form-control-solid" asp-for="Cnic" type="text" placeholder="Cnic">
+            <div class="col-md-12 mb-2">
+                <input class="form-control form-control-solid required" asp-for="Cnic" type="text" placeholder="Cnic">
+            </div>
+            <div>
+                <button type="submit" style="float:left" class="btn btn-secondary col-sm-1">Add</button>
+            </div>
         </div>
-        <div>
-            <button style="float:left" id="search-record" class="btn btn-secondary col-sm-1">Search</button>
-        </div>
-    </div>
-</div>
-<div class="card-body pt-0">
-    <div class="card-title">
-        <a asp-controller="Student" asp-action="Create" style="float:right" class="btn btn-success col-sm-2">Add Record</a>
-        <h2 class="anchor fw-bolder fs-3 mb-2" id="server-side">Student Data</h2>
-    </div>
-    <div id="student-grid">
-    </div>
+    </form>
 </div>
 @section Scripts{
     <script>
