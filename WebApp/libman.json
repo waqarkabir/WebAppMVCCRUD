@@ -20,6 +20,11 @@
       "provider": "cdnjs",
       "library": "toastr.js@2.1.4",
       "destination": "wwwroot/lib/toastr/"
+    },
+    {"provider": "cdnjs",
+      "library": "font-awesome@6.1.1",
+      "destination": "wwwroot/lib/font-awesome/"
+      
     }
 ]
 }

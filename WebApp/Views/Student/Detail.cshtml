@@ -1,0 +1,36 @@
+﻿@model Student
+@{
+    ViewData["Title"] = "Profile";
+    Layout = "_Layout";
+}
+<ol class="breadcrumb pt-2">
+    <li class="breadcrumb-item"><a href="/Home/Index">Home</a></li>
+    <li class="breadcrumb-item"><a href="/Student/Index">Students</a></li>
+    <li class="breadcrumb-item active">Profile</li>
+</ol>
+<div class="card-body pt-0">
+    <div class="card-title">
+        <h2 class="anchor fw-bolder fs-3 mb-2">Profile Data</h2>
+
+        <div class="container col-md-6">
+        <div style="float:right"><img src="" alt="PIC"/>    
+            <i class="fa fa-CAMERA-RETRO" style="color: #1c7ed6;"></i>
+               </div>
+           
+        <table class="table">
+            <tr>
+                <td>Name:</td>
+                <td>@Model.Name</td>
+            </tr>
+            <tr>
+                <td>Cnic:</td>
+                <td>@Model.Cnic</td>
+            </tr>
+        </table>
+       </div>
+    </div>
+</div>
+@section Scripts{
+    <script>
+    </script>
+}

@@ -56,6 +56,23 @@ namespace WebApp.Controllers
             return RedirectToAction("Index");
         }
 
+        public IActionResult Detail(int id)
+        {
+            var student = _context.Students.FirstOrDefault(p => p.Id == id);
+
+            if (student == null)
+            {
+                return NotFound();
+            }
+
+            var model = new Student()
+            {
+                Cnic = student.Cnic,
+                Name = student.Name
+            };
+
+            return View(model);
+        }
         public IActionResult Update(int id)
         {
             var student = _context.Students.FirstOrDefault(p => p.Id == id);

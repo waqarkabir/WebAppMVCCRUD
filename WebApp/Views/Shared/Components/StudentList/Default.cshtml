@@ -21,7 +21,8 @@
                     <td>
                         <a asp-controller="Student" asp-action="Update" class="btn btn-sm btn-info js-edit" asp-route-id=@student.Id>Edit</a>
                         <a href="#" class="btn btn-sm btn-danger js-delete" data-id=@student.Id>Delete</a>
-                        <a href="#" class="btn btn-sm btn-secondary js-detail" data-id=@student.Id>Detail</a>
+                        <a asp-controller="Student" asp-action="Detail" class="btn btn-sm btn-primary js-detail" asp-route-id=@student.Id>Details</a>
+
                     </td>
                 </tr>
             }
