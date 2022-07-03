@@ -1,25 +1,26 @@
-﻿@model StudentCreateViewModel
+﻿@model StudentUpdateViewModel
 @{
-    ViewData["Title"] = "Add a Student";
+    ViewData["Title"] = "Update Student Data";
     Layout = "_Layout";
 }
 <ol class="breadcrumb pt-2">
     <li class="breadcrumb-item"><a href="/Home/Index">Home</a></li>
     <li class="breadcrumb-item"><a href="/Student/Index">Students</a></li>
-    <li class="breadcrumb-item active">Add a Student</li>
+    <li class="breadcrumb-item active">Update Student Data</li>
 </ol>
 <div class="card-body pt-0">
     <div class="card-title">
         <h2 class="anchor fw-bolder fs-3 mb-2" id="server-side">
-            Add a Student
+            Update Student Data
         </h2>
     </div>
-    <form method="post" asp-controller="Student" asp-action="Create">
+    <form method="post" asp-controller="Student" asp-action="Update">
         @Html.AntiForgeryToken()
         <input name="IsValid" type="hidden" value="@ViewData.ModelState.IsValid.ToString()" />
         <div asp-validation-summary="All" class="text-danger">
         </div>
         <div class="row form-group">
+            <input type="hidden" value="@Model.Id" />
             <div class="col-md-12 mb-2">
                 <input class="form-control form-control-solid required" asp-for="Name" type="text" placeholder="Name">
             </div>
@@ -28,7 +29,7 @@
                 <input class="form-control form-control-solid required" asp-for="Cnic" type="text" placeholder="Cnic">
             </div>
             <div>
-                <button type="submit" style="float:left" class="btn btn-secondary col-sm-1">Add</button>
+                <button type="submit" style="float:left" class="btn btn-secondary col-sm-1">Update</button>
             </div>
         </div>
     </form>
@@ -36,7 +37,6 @@
 @section Scripts{
     <script>
         $(function() {
-            $("#studentpage").addClass("active");
         });
     </script>
 }

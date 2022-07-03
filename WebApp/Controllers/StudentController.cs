@@ -2,12 +2,13 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Diagnostics;
+using System.Linq;
 using WebApp.Data;
 using WebApp.Models;
 
 namespace WebApp.Controllers
 {
-    [Authorize]
+    //[Authorize]
     public class StudentController : Controller
     {
         private readonly ILogger<StudentController> _logger;
@@ -55,7 +56,50 @@ namespace WebApp.Controllers
             return RedirectToAction("Index");
         }
 
-        
+        public IActionResult Update(int id)
+        {
+            var student = _context.Students.FirstOrDefault(p => p.Id == id);
+
+            if (student == null)
+            {
+                return NotFound();
+            }
+
+            var model = new StudentUpdateViewModel()
+            {
+                Cnic = student.Cnic,
+                Name = student.Name
+            };
+
+            return View(model);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Update(StudentUpdateViewModel model)
+        {
+            var student = _context.Students.FirstOrDefault(p => p.Id == model.Id);
+            if (student == null)
+            {
+                return NotFound();
+            }
+
+            if (ModelState.IsValid)
+            {
+                student.Name = model.Name;
+                student.Cnic = model.Cnic;
+                _context.Students.Update(student);
+                _context.SaveChanges();
+            }
+            else
+            {
+                ModelState.AddModelError("", "Provide all required data to proceed");
+            }
+
+            return RedirectToAction("Index");
+        }
+
+
         [HttpDelete]
         public async Task<IActionResult> Delete(int id)
         {
