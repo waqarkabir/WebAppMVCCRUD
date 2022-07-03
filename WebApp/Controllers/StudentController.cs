@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System.Diagnostics;
 using WebApp.Data;
 using WebApp.Models;
@@ -52,6 +53,23 @@ namespace WebApp.Controllers
             }
 
             return RedirectToAction("Index");
+        }
+
+        
+        [HttpDelete]
+        public async Task<IActionResult> Delete(int id)
+        {
+            var student = await _context.Students.FirstOrDefaultAsync(p => p.Id == id);
+
+
+            if (student == null)
+            {
+                return NotFound();
+            }
+
+            _context.Students.Remove(student);
+            await _context.SaveChangesAsync();
+            return RedirectToAction("Index", new { Areas = "", Controller = "Student" });
         }
 
         public IActionResult GetData(string name, string cnic)

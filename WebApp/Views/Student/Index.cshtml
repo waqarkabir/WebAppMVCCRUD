@@ -71,9 +71,19 @@
             $(document).delegate(".js-delete", "click", function(e) {
                 let btn = $(this);
                 let id = btn.attr('data-id');
+                console.log(id);
 
-
-                alert("delete btn clicked" + " " + id);
+                $.ajax({
+                    url: "/Student/Delete",
+                    type: "DELETE",
+                    data: { id: id },
+                    success: function(response) {
+                        toastr.success("Student deleted successfully!");
+                    },
+                    error: function() {
+                        toastr.error("Student can't be deleted!");
+                    }
+                });
             });
 
             $(document).delegate(".js-detail", "click", function(e) {
