@@ -1,4 +1,4 @@
-﻿@model Student
+﻿@model StudentIndexViewModel
 @{
     ViewData["Title"] = "Students";
     Layout = "_Layout";
@@ -9,9 +9,17 @@
 </ol>
 
 <div class="row">
-    <input class="form-control" type="text" placeholder="Enter any value to search records" />
-    <hr />
-    <button class="btn btn-success col-sm-1">Search</button>
+    <label asp-for="Name"></label>
+    <input class="form-control" asp-for="Name" type="text" placeholder="Enter name to search records" />
+</div>
+
+<div class="row">
+    <label asp-for="Cnic"></label>
+    <input class="form-control" asp-for="Cnic" type="text" placeholder="Enter cnic value to search records" />
+</div>
+<hr />
+<div class="row">
+    <button id="search-record" class="btn btn-success col-sm-1">Search</button>
 </div>
 
 <div id="student-grid">
@@ -19,41 +27,51 @@
 @section Scripts{
     <script>
         $(function() {
-              $("#studentpage").addClass("active");
+            $("#studentpage").addClass("active");
+            function loadData() {
+                $.ajax({
+                    url: "/Student/GetData",
+                    type: "Get",
+                    data: {
+                        cnic: $("#Cnic").val(),
+                        name: $("#Name").val(),
+                    },
+                    success: function(response) {
+                        $('#student-grid').html(response);
+                    },
+                    error: function() {
+                        $('#student-grid').html("No Data Available");
+                    }
+                })
+            }
 
-            $.ajax({
-                url: "/Student/GetData",
-                type: "Get",
-                success: function(response) {
-                    $('#student-grid').html(response);
-                },
-                error: function() {
-                    $('#student-grid').html("No Data Available");
-                }
+            $("#search-record").on("click", function(e) {
+                e.preventDefault();
+                loadData();
             });
 
-             $(document).delegate(".js-edit", "click", function (e) {
+            $(document).delegate(".js-edit", "click", function(e) {
                 let btn = $(this);
                 let id = btn.attr('data-id');
 
 
-                 alert("edit btn clicked" + " " + id);
+                alert("edit btn clicked" + " " + id);
             });
 
-             $(document).delegate(".js-delete", "click", function (e) {
+            $(document).delegate(".js-delete", "click", function(e) {
                 let btn = $(this);
                 let id = btn.attr('data-id');
 
 
-                 alert("delete btn clicked" + " " + id);
+                alert("delete btn clicked" + " " + id);
             });
 
-             $(document).delegate(".js-detail", "click", function (e) {
+            $(document).delegate(".js-detail", "click", function(e) {
                 let btn = $(this);
 
-                 let id = btn.attr('data-id');
+                let id = btn.attr('data-id');
 
-                 alert("detail btn clicked" + " " +  id);
+                alert("detail btn clicked" + " " + id);
             });
 
         });

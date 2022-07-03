@@ -33,7 +33,11 @@ namespace WebApp.Data
         {
             modelBuilder.Entity<Student>(entity =>
             {
-                entity.ToTable("Student");
+                entity.ToTable("Student")
+                .Property(p => p.Id);
+                entity.HasKey(p => p.Id); ;
+                entity.Property(p => p.Name);
+                entity.Property(p => p.Cnic);
 
             });
 

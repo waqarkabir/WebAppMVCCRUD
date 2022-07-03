@@ -21,9 +21,10 @@ namespace WebApp.Controllers
             return View();
         }
 
-        public IActionResult GetData()
+        public IActionResult GetData(string name, string cnic)
         {
-            return ViewComponent("WebApp.ViewComponents.StudentList");
+            return ViewComponent("WebApp.ViewComponents.StudentList", new {name, cnic}
+            );
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
