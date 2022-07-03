@@ -12,7 +12,7 @@ namespace WebApp.Controllers
 
         public AccountController(UserManager<IdentityUser> userManager,
                                       SignInManager<IdentityUser> signInManager)
-        {
+         {
             _userManager = userManager;
             _signInManager = signInManager;
         }

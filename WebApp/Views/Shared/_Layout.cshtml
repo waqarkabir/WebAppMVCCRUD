@@ -3,11 +3,11 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - WebApp</title>
+    <title>@ViewData["Title"] - SMS</title>
     <link rel="stylesheet" href="~/lib/bootswatch/united/bootstrap.min.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/WebApp.styles.css" asp-append-version="true" />
-   @RenderSection("Styles", required: false)
+    @RenderSection("Styles", required: false)
 </head>
 <body>
     <header>
@@ -18,31 +18,25 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
 
-                <div class="collapse navbar-collapse" id="navbarColor01">
-                        <ul class="navbar-nav me-auto">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" asp-area="" asp-controller="Home" asp-action="Index">
+                            Home
+                            <span class="visually-hidden">(current)</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a id="studentpage" class="nav-link" asp-area="" asp-controller="Student" asp-action="Index">Students</a>
+                    </li>
+                </ul>
 
-                            <li class="nav-item">
-                                <a class="nav-link active" asp-area="" asp-controller="Home" asp-action="Index">
-                                    Home
-                                    <span class="visually-hidden">(current)</span>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a id="studentpage" class="nav-link" asp-area="" asp-controller="Student" asp-action="Index">Students</a>
-                            </li>
-                            <li class="nav-item style="float:right"">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="Logout">Logout</a>
-                            </li>
-                        </ul>
-                </div>
-
-              
-                    
+                <ul class="navbar-nav" style="float:right" >
+                    <li class="nav-item">
+                        <a class="nav-link" asp-area="" asp-controller="Account" asp-action="Logout">Logout</a>
+                    </li>
+                </ul>
             </div>
         </nav>
-
-
-
     </header>
 
 
@@ -54,7 +48,7 @@
 
     <footer class="border-top footer text-muted">
         <div class="container">
-            &copy; 2022 - WebApp - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            &copy; 2022 - SMS - <a href="#">Privacy</a>
         </div>
     </footer>
     <script src="~/lib/jquery/jquery.min.js"></script>
