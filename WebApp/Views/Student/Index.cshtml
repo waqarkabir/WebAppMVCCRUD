@@ -7,22 +7,32 @@
     <li class="breadcrumb-item"><a href="/Home/Index">Home</a></li>
     <li class="breadcrumb-item active">Student</li>
 </ol>
+<div class="card-body pt-0">
+    <div class="card-title">
+        <h2 class="anchor fw-bolder fs-3 mb-2" id="server-side">
+            Searching
+        </h2>
+    </div>
+    <div class="row form-group">
+        <div class="col-md-6 mb-2">
+            <input class="form-control form-control-solid" asp-for="Name" type="text" placeholder="Name">
+        </div>
 
-<div class="row">
-    <label asp-for="Name"></label>
-    <input class="form-control" asp-for="Name" type="text" placeholder="Enter name to search records" />
+        <div class="col-md-6 mb-2">
+            <input class="form-control form-control-solid" asp-for="Cnic" type="text" placeholder="Cnic">
+        </div>
+        <div>
+            <button style="float:left" id="search-record" class="btn btn-secondary col-sm-1">Search</button>
+        </div>
+    </div>
 </div>
-
-<div class="row">
-    <label asp-for="Cnic"></label>
-    <input class="form-control" asp-for="Cnic" type="text" placeholder="Enter cnic value to search records" />
-</div>
-<hr />
-<div class="row">
-    <button id="search-record" class="btn btn-success col-sm-1">Search</button>
-</div>
-
-<div id="student-grid">
+<div class="card-body pt-0">
+    <div class="card-title">
+        <button style="float:right" id="create-record" class="btn btn-success col-sm-2">Add Record</button>
+        <h2 class="anchor fw-bolder fs-3 mb-2" id="server-side">Student Data</h2>
+    </div>
+    <div id="student-grid">
+    </div>
 </div>
 @section Scripts{
     <script>
